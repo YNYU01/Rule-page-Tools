@@ -1,7 +1,7 @@
-
 <!DOCTYPE html>
   <html lang="en">
   <head>
+      <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
       <meta charset="UTF-8">
       <title>Lightly-HTML-Project</title>
       <link rel="stylesheet" type="text/css" href="style.css">
@@ -93,7 +93,9 @@
 
         <div style="left:12.5px; position: relative; font-size: 12px; color:#ff0000">*当前使用浅色主题 </div>
 
+        <!--导出范围-->
         <div id="export-img" style=" left:12.5px; position: relative; width: 375px; height: 600px; background:var(--color5) " >
+          
           <div id="bg-img" style="width: 375px; height: 600px; ">
             <div style="width: 357px; height: 511.5px; left: 9.50px; top: 70px; position: relative; background: var(--color4); border-radius: 5.50px">
               
@@ -335,7 +337,14 @@ uploadInput.addEventListener('change', function() {
 
 
 //导出预览图
-
+function exportimg() {
+            html2canvas(document.getElementById("export-img"),{scale: 2}).then(function(canvas) {
+                var link = document.createElement('a');
+                link.href = canvas.toDataURL();
+                link.download = 'screenshot.png';
+                link.click();
+            });
+        }
 
 </script>
   </body>
