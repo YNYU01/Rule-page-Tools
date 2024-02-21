@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-  <html lang="zn">
+  <html lang="en">
   <head>
       <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
       <meta charset="UTF-8">
-      <title>Rule-page-Tools</title>
+      <title>Rule-page Tools</title>
       <link rel="stylesheet" type="text/css" href="style.css">
       <style>
       :root{
-           --color5:hsl(208,46%,49%);
-           --color1:hsl(208,52%,38%);
-           --color2:hsl(208,46%,61%);
+           --color5:hsl(0,0%,39%);
+           --color1:hsl(0,0%,30%);
+           --color2:hsl(0,0%,42%);
            --color3:hsl(0,0%,100%);
-           --color4:hsl(208,25%,72%);
+           --color4:hsl(0,0%,65%);
            }
 
       .color-5{
@@ -56,7 +56,7 @@
       }
 
       #bg-img{
-        background-image: url('default.png');
+        background-image: url('https://raw.githubusercontent.com/YNYU01/Mini-Act-Tools/main/img/bg_%E8%A7%84%E5%88%99%E9%A1%B5.png');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: top;
@@ -100,7 +100,7 @@
       </style>
   </head>
   <body>
-      <div style="width: 400px; height: 850px;flex-direction: column; left:20px; position: relative; background-color: #eee; border-radius: 10px;">
+      <div style="width: 400px; height: 850px;flex-direction: column; left:8px; position: relative; background-color: #eee; border-radius: 10px;">
 
         <p>
           <div style=" width: 375px; height: 100px;position: relative; top: 10px; text-align: center; font-size: 24px; font-family: Source Han Sans CN; font-weight: 700; color:#444 " > 规则页模板1.0
@@ -254,8 +254,8 @@
               <div class="text-1">color5</div>
             </div>
           --> 
-            <input type="text" id="colorValue" value="#4380B6" style="width:80px; height:26px; border-radius: 4px; ">
-            <input type="color" value="#4380B6" id="colorPicker" class="color-box" onchange="updateColorValue()"><!--主题色选择-->
+            <input type="text" id="colorValue" value="#646464" style="width:80px; height:26px; border-radius: 4px; ">
+            <input type="color" value="#646464" id="colorPicker" class="color-box" onchange="updateColorValue()"><!--主题色选择-->
           </div>
 
         </div>
@@ -263,7 +263,8 @@
         <div style="width: 375px; height: 40px;  left:12.5px; display: flex; position: relative ">
           <button  onclick="exportimg()" class="button">导出</button>
           <div style="left:12px; display: flex; position: relative ">
-            <button onclick="location.reload()" class="button2">重置</button>
+            <!--<button onclick="location.reload()" class="button2">重置</button>-->
+            <button onclick="reload()" class="button2">重置</button>
           </div>
         </div>
 
@@ -367,6 +368,22 @@ function exportimg() {
                 link.click();
             });
         }
+
+//重置
+function reload(){
+  document.documentElement.style.setProperty('--color5','hsl(0,0%,39%)');
+  document.documentElement.style.setProperty('--color1','hsl(0,0%,30%)');
+  document.documentElement.style.setProperty('--color2','hsl(0,0%,42%');
+  document.documentElement.style.setProperty('--color4','hsl(0,0%,65%)');
+  document.getElementById("imageInput").value = "";
+
+  colorPicker.value = "#646464";
+  colorValue.value = "#646464";
+
+  var bgElement = document.getElementById("bg-img");
+  bgElement.style.backgroundImage = 'url(https://raw.githubusercontent.com/YNYU01/Mini-Act-Tools/main/img/bg_%E8%A7%84%E5%88%99%E9%A1%B5.png)';
+
+}
 
 </script>
   </body>
