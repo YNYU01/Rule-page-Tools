@@ -286,7 +286,7 @@ colorPicker.addEventListener('input', function() {
   const hsl = rgbToHsl(hexToRgb(color));
   
   root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`);
-  root.style.setProperty('--color1', `hsl(${hsl.h}, ${hsl.s + 6 }%, ${hsl.l - 9}%)`);
+  root.style.setProperty('--color1', `hsl(${hsl.h}, ${hsl.s * 1.13 }%, ${hsl.l - 9}%)`);
   root.style.setProperty('--color2', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l + 12}%)`);
   root.style.setProperty('--color4', `hsl(${hsl.h}, ${hsl.s - 21 }%, ${hsl.l + 26}%)`);
 });
