@@ -4,14 +4,17 @@
       <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
       <meta charset="UTF-8">
       <title>Rule-page Tools</title>
-      <link rel="stylesheet" type="text/css" href="style.css">
+      
       <style>
       :root{
-           --color5:hsl(0,0%,39%);
-           --color1:hsl(0,0%,30%);
-           --color2:hsl(0,0%,42%);
+           --color5:hsl(0,0%,50%);
+           --color1:hsl(0,0%,41%);
+           --color2:hsl(0,0%,62%);
            --color3:hsl(0,0%,100%);
-           --color4:hsl(0,0%,65%);
+           --color4:hsl(0,0%,76%);
+           --switch1:#707070;
+           --switch2:#ffffff;
+
            }
 
       .color-5{
@@ -35,8 +38,8 @@
       }
 
       .color-box{
-        width: 40px;
-        height: 30px;
+        width: 26px;
+        height: 26px;
         border: 1px solid black;
         border-radius: 4px;
       }
@@ -55,7 +58,7 @@
         background:var(--color5)
       }
 
-      #bg-img{
+      .bg-img{
         background-image: url('https://raw.githubusercontent.com/YNYU01/Mini-Act-Tools/main/img/bg_%E8%A7%84%E5%88%99%E9%A1%B5.png');
         background-repeat: no-repeat;
         background-size: contain;
@@ -65,12 +68,12 @@
 
       .button {
         text-align: center;
-        line-height: 8px;
+        line-height: 8px;        
         width:80px; 
         height:26px; 
         border-radius: 4px;
         background-color: rgb(92, 141, 190);
-        color: white;
+        color: #ffffff;
         padding: 10px 20px;
         border: none;
         cursor: pointer;
@@ -83,11 +86,13 @@
       .button2 {
         text-align: center;
         line-height: 8px;
-        width:80px; 
+        display: flex;
+        align-items: center;
+        position: relative;       
         height:26px; 
         border-radius: 4px;
         background-color: rgb(218, 218, 218);
-        color: white;
+        color: rgb(146, 146, 146);
         padding: 10px 20px;
         border: none;
         cursor: pointer;
@@ -95,202 +100,432 @@
 
       .button2:hover {
         background-color: rgb(120, 120, 120);
+        color: #505050;
       }
-      
+
+      .tips1{
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+
+      .tips1 .tips1text{
+        visibility: hidden;
+        width: 240px;
+        background-color: #000000d0;
+        color: #ffffffac;
+        text-align: left;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        top: 20px;
+        left: 30%;
+        transform: translateX(-50%);
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+
+      .tips1{
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+
+      .tips1:hover .tips1text{
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .tips2{
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      .tips2 .tips2text{
+        visibility: hidden;
+        width: 220px;
+        background-color: #000000d0;
+        color: #ffffffac;
+        text-align: left;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 20px;
+        left: 30%;
+        transform: translateX(-50%);
+        opacity: 1;
+        transition: opacity 0.3s;
+      }
+
+      .tips2:hover .tips2text{
+        visibility: visible;
+        opacity: 1;
+      }
+
+      .tips3{
+        padding: 10px;
+        background-color: #000000ba;
+        color: #fff; 
+        z-index: 1;
+        bottom: 50%; 
+        position: absolute;
+        font-size: 12px;
+        border-radius: 10px; 
+      }
+
+      .theme-switch {
+        position: absolute;
+        display: inline-block;
+        width: 32px;
+        height: 14px;
+        background-color:var(--switch1);
+        border-radius: 17px;
+        margin-top: 0px;
+      }
+
+      .theme-switch::before {        
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--switch2);
+        top: 2px;
+        left: 2px;
+        transition: transform 0.3s;
+      }
+
+      input[type="checkbox"] {
+        display: none;
+      }
+
+      input[type="checkbox"]:checked + .theme-switch::before {
+        transform: translateX(18px);
+      }
+
       </style>
   </head>
-  <body>
-      <div style="width: 400px; height: 850px;flex-direction: column; left:8px; position: relative; background-color: #eee; border-radius: 10px;">
-
-        <p>
-          <div style=" width: 375px; height: 100px;position: relative; top: 10px; text-align: center; font-size: 24px; font-family: Source Han Sans CN; font-weight: 700; color:#444 " > 规则页模板1.0
-            <div style=" height: 10px; position: relative; text-align: center; font-size: 12px; font-family: Source Han Sans CN; font-weight: 300; color:#40597e " >
-              1.选择文件上传背景图；<br>2.选择合适的主题色；<br>3.导出效果图，并复制色号修改模板的style；
-            
-            </div>
-          </div>
-        </p>
-
-        <div style="left:12.5px; position: relative; font-size: 12px; color:#ff0000">*当前使用浅色主题 </div>
-
-        <!--导出范围-->
-        <div id="export-img" style=" left:12.5px; position: relative; width: 375px; height: 600px; background:var(--color5) " >
-          
-          <div id="bg-img" style="width: 375px; height: 600px; ">
-            <div style="width: 375px; height: 600px; background: linear-gradient(to bottom, transparent 150px, var(--color5)); ">
-              <div style="width: 357px; height: 511.5px; left: 9.50px; top: 70px; position: relative; background: var(--color4); border-radius: 5.50px">
-                
-                <div style="width: 355px; height: 510px; left: 1px; top: 1px; position: absolute; background: var(--color5); border-radius: 5px">
-
-                  <!--奖励icon模块-->
-                  <div style="width: 355px; height: 104px; left: 0px; top: 380px; position: absolute">
-                    <div style="width: 80px; height: 104px; left: 32.50px; top: 0px; position: absolute; background:var(--color2); border-radius: 5px; overflow: hidden">
-                      <div style="width: 80px; height: 24px; left: 0px; top: 80px; position: absolute; background:var(--color1)">
-                        <div style="left: 6.50px; top: 3px; position: absolute; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">千里传音×1</div>
-                      </div>
-                    </div>
-                    <div style="width: 80px; height: 104px; left: 137.50px; top: 0px; position: absolute; background:var(--color2); border-radius: 5px; overflow: hidden">
-                      <div style="width: 80px; height: 24px; left: 0px; top: 80px; position: absolute; background:var(--color1)">
-                        <div style="left: 6.50px; top: 3px; position: absolute; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">千里传音×1</div>
-                      </div>
-                    </div>
-                    <div style="width: 80px; height: 104px; left: 242.50px; top: 0px; position: absolute; background:var(--color2); border-radius: 5px; overflow: hidden">
-                      <div style="width: 80px; height: 24px; left: 0px; top: 80px; position: absolute; background:var(--color1)">
-                        <div style="left: 6.50px; top: 3px; position: absolute; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">千里传音×1</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!--二级标题2-->
-                  <div style="width: 355px; height: 22.50px; left: 0px; top: 248px; position: absolute">
-                    <div style="width: 4.50px; height: 12px; left: 8px; top: 5.50px; position: absolute; background: var(--color4); border-radius: 6px"></div>
-                    <div style="left: 22.50px; top: 0px; position: absolute; color: var(--color4); font-size: 15px; font-family: Source Han Sans CN; font-weight: 700; word-wrap: break-word">完成所有任务</div>
-                  </div>
-
-                  <!--示意段落-->
-                  <div style="width: 355px; height: 112px; left: 0px; top: 276px; position: absolute">
-                    <div style="width: 6px; height: 107.50px; left: 7px; top: 0px; position: absolute">
-                      <div style="width: 6px; height: 6px; left: 0px; top: 6px; position: absolute; border-radius: 9999px; border: 1px var(--color4) solid"></div>
-                      <div style="width: 6px; height: 6px; left: 0px; top: 23.50px; position: absolute; border-radius: 9999px; border: 1px var(--color4) solid"></div>
-                    
-                    </div><!--段落开头符号-->
-                    <div style="width: 315.50px; height: 112px; left: 22.50px; top: 0px; position: absolute">
-                      <div style="left: 0px; top: 56px; position: absolute; color: var(--color4); font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">策划提供文案策划提供文案策划提供文案
-                        <br/>策划提供文案策划提供文案策划提供文案策划提供文案策划
-                      </div>
-                      <div style="width: 315.50px; height: 81.50px; left: 0px; top: 0px; position: absolute; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">策划提供文案策划提供文案策划提供文案
-                      <br/>策划提供文案策划提供文案策划提供文案策划提供文案策划<br/>提供文案策划提供文案
-                      </div>
-                    </div>
-                  </div>
-
-                  <!--表格-->
-                  <div style="width: 355px; height: 142px; left: 0px; top: 96px; position: absolute">
-                    <div style="width: 327px; height: 141px; left: 21px; top: 0px; position: absolute; background:var(--color1); border-radius: 5px; overflow: hidden">
-
-                      <div style="width: 325px; height: 34px; left: 1px; top: 106.5px; position: absolute">
-                        <div style="width: 162px; height: 34px; left: 0px; top: 0px; position: absolute; border-radius: 0px 0px 0px 4px; background:var(--color2)">
-                          <div style="left: 43px; top: 8px; position: absolute; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">任务名称名称</div>
-                        </div>
-                        <div style="width: 162px; height: 34px; left: 163px; top: 0px; position: absolute;border-radius: 0px 0px 4px 0px; background:var(--color2)">
-                          <div style="left: 49px; top: 8px; position: absolute; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">奖励名称名称</div>
-                        </div>
-                      </div>
-
-                      <div style="width: 325px; height: 34px; left: 1px; top: 72px; position: absolute">
-                        <div style="width: 162px; height: 34px; left: 0px; top: 0px; position: absolute; background:var(--color2)">
-                          <div style="left: 43px; top: 7.50px; position: absolute; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">任务名称名称</div>
-                        </div>
-                        <div style="width: 162px; height: 34px; left: 163px; top: 0px; position: absolute; background:var(--color2)">
-                          <div style="left: 49px; top: 7.50px; position: absolute; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">奖励名称名称</div>
-                        </div>
-                      </div>
-
-                      <div style="width: 325px; height: 34px; left: 1px; top: 37px; position: absolute">
-                        <div style="width: 162px; height: 34px; left: 0px; top: 0px; position: absolute; background:var(--color2)">
-                          <div style="left: 43.50px; top: 6.50px; position: absolute; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">任务名称名称</div>
-                        </div>
-                        <div style="width: 162px; height: 34px; left: 163px; top: 0px; position: absolute; background:var(--color2)">
-                          <div style="left: 48.50px; top: 6.50px; position: absolute; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">奖励名称名称</div>
-                        </div>
-                      </div>
-
-                      <div style="width: 325px; height: 34px; left: 1px; top: 1.50px; position: absolute">
-                        <div style="width: 24px; height: 18px; left: 235.50px; top: 5.50px; position: absolute">
-                          <div style="left: 0px; top: 0px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">奖励</div>
-                        </div>
-                        <div style="width: 24px; height: 18px; left: 67.50px; top: 5.50px; position: absolute">
-                          <div style="left: 0px; top: 0px; position: absolute; text-align: center; color: white; font-size: 12px; font-family: Source Han Sans CN; font-weight: 400; word-wrap: break-word">任务</div>
-                        </div>
-                      </div>
-                      
-                    </div>
-                  </div>
-
-                  <!--二级标题1-->
-                  <div style="width: 355px; height: 22.50px; left: 0px; top: 64px; position: absolute">
-                    <div style="width: 4.50px; height: 12px; left: 8px; top: 5px; position: absolute; background: var(--color4); border-radius: 6px"></div>
-                    <div style="left: 22.50px; top: 0px; position: absolute; color: var(--color4); font-size: 15px; font-family: Source Han Sans CN; font-weight: 700; word-wrap: break-word">做任务应援主播（每日重置）</div>
-                  </div>
-
-                  <!--一级标题-->
-                  <div style="width: 355px; height: 25px; left: 0px; top: 20px; position: absolute">
-                    <div style="width: 100px; height: 25px; left: 127.50px; top: 0px; position: absolute; background:var(--color1); border-radius: 12.50px"></div>
-                    <div style="left: 145.50px; top: 0.50px; position: absolute; text-align: center; color: white; font-size: 16px; font-family: Source Han Sans CN; font-weight: 700; word-wrap: break-word">规则说明</div>
-                  </div>
-                </div>  
-                </div>
-             </div>  
-          </div>
-        </div>
-
-        <div style="width: 375px; height: 80px; top: 10px; left:12.5px; display: flex; position: relative ">
-          <!--上传背景图-->
-          <div style="width: 200px; height: 80px; top: 10px;display: flex; justify-content: space-between; position: relative">
-            <input type="file" id="imageInput" >
-          </div>
-
-          <!--颜色选择和预览-->
-          <div style="width: 120px; height: 80px; top: 10px; left:54px; display: flex; justify-content: space-between; position: relative">
-          <!--
-            <div style="width: 40px; height: 50px; display: flex; flex-direction: column; justify-content: center">
-              <div class="color-box color-1 "></div>
-              <div class="text-1">color1</div>
-            </div>
-            <div style="width: 40px; height: 50px; display: flex; flex-direction: column; justify-content: center">
-              <div class="color-box color-2 "></div>
-              <div class="text-1">color2</div>
-            </div>
-            <div style="width: 40px; height: 50px; display: flex; flex-direction: column; justify-content: center">
-              <div class="color-box color-3 "></div>
-              <div class="text-1">color3</div>
-            </div>
-            <div style="width: 40px; height: 50px; display: flex; flex-direction: column; justify-content: center">
-              <div class="color-box color-4 "></div>
-              <div class="text-1">color4</div>
-            </div>
-            <div style="width: 40px; height: 50px; display: flex; flex-direction: column; justify-content: center">
-              <div class="color-box color-5 "></div>
-              <div class="text-1">color5</div>
-            </div>
-          --> 
-            <input type="text" id="colorValue" value="#646464" style="width:80px; height:26px; border-radius: 4px; ">
-            <input type="color" value="#646464" id="colorPicker" class="color-box" onchange="updateColorValue()"><!--主题色选择-->
-          </div>
-
-        </div>
-
-        <div style="width: 375px; height: 40px;  left:12.5px; display: flex; position: relative ">
-          <button  onclick="exportimg()" class="button">导出</button>
-          <div style="left:12px; display: flex; position: relative ">
-            <!--<button onclick="location.reload()" class="button2">重置</button>-->
-            <button onclick="reload()" class="button2">重置</button>
-          </div>
-        </div>
-
+  <body style="font-family: Source Han Sans CN; display: flex; justify-content: center; position: relative;">
+    <div id="pickertips" style="padding: 10px;background-color: #000000ba;color: #fff; z-index: 1;bottom: 50%; position: absolute; font-size: 12px;border-radius: 10px;display: none;">当前颜色较亮,建议使用暗字色主题~</div>
+      <div style="width: 400px; height: 850px;left:8px;  background-color: #eeeff3; border-radius: 10px;">
         
+        <!--说明区-->
+        <div style=" width: 375px; height: 160px; top: 10px;  " >
+            <div style="display: flex; justify-content: right; align-items: center;">
+              <div style="width: 160px; display: flex; justify-content: right; align-items: center; text-align: right; font-size: 24px;  font-weight: 700; color:#444">
+                规则页模板2.0
+              </div>
+              <div class="tips1" style="width: 16px;height: 16px;border:2px solid #a3a3a3; border-radius: 50%;display: flex; justify-content: center;align-items: center; margin-left:8px; margin-top: -2px;" >
+                <span style="color: #a3a3a3; font-weight: 500; "> ? </span>
+                <span class="tips1text" style="font-size: 12px;">1.选择文件上传背景图/上传MJ获取链接；<br>2.选择合适的主题色；<br>3.导出效果图，并复制色号修改模板的style； </span>
+              </div>
+              <div style="width: 90px;"></div>
+              <!--主题开关-->
+              <div style="display: flex; justify-content: right; align-items: center;">
+                <input type="checkbox" id="themeSwitch" style="width: 28px; height: 14px;"></input>
+                <label for="themeSwitch" class="theme-switch">
+                </label>
+              </div>
+            </div>
+            
+          <div id="tips1" style="width: 375px; height: 110px; margin-left: 10px; position: relative; border-radius: 4px; background-color: #d3d7de; display: block;" >
+            <div style="position: relative; text-align: left;  transform: skewX(-10deg); margin-left: 10px;  font-size: 10px; font-weight: 500; color:#898c96;" >
+              *当前使用
+              <span style="color:#5189d7">亮字色</span>主题
+            </div>
+            <div style="display: flex;">
+              <!--div style=" width: 200px; height: 10px; position:relative;margin-left: 20px; text-align: left; font-size: 12px;  font-weight: 300; color:#40597e " >
+                1.选择文件上传背景图；<br>2.选择合适的主题色；<br>3.导出效果图，并复制色号修改模板的style；           
+              </div-->
+              <div style="width: 360px; height: 10px; position: relative; text-align: left; margin-left: 10px;  font-size: 12px;  font-weight: 300; color:#1e3d63 " >
+                color0:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color5);">■</span> h &nbsp;,&nbsp; s &nbsp;,&nbsp; l &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;（主题色）// 底框背景色、背景图拉伸色</span><br>
+                color1:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color1);">■</span> h &nbsp;,&nbsp; s*1.13 &nbsp;,&nbsp; l-9 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 主标题底框、表头背景色、表格线框</span><br>
+                color2:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color2);">■</span> h &nbsp;,&nbsp; s &nbsp;,&nbsp; l+12 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 表格背景色、奖励icon背景色</span><br>
+                color3:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color3);">■</span> &nbsp; 默认白色 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 主标题字色、正文字色、奖励icon字色</span><br>
+                color4:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color4);">■</span> h &nbsp;,&nbsp; s*0.9 &nbsp;,&nbsp; l+26 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 次要字色、分点标识、底框描边</span>           
+              </div>            
+            </div>
+          </div>
+
+          <div id="tips2" style="width: 375px; height: 110px; margin-left: 10px; position: relative; border-radius: 4px; background-color: #d3d7de; display: none;" >
+            <div style="position: relative; text-align: left;  transform: skewX(-10deg); margin-left: 10px;  font-size: 10px; font-weight: 500; color:#898c96;" >
+              *当前使用
+              <span style="color:#824ab0">暗字色</span>主题
+            </div>
+            <div style="display: flex;">
+              <!--div style=" width: 200px; height: 10px; position:relative;margin-left: 20px; text-align: left; font-size: 12px;  font-weight: 300; color:#40597e " >
+                1.选择文件上传背景图；<br>2.选择合适的主题色；<br>3.导出效果图，并复制色号修改模板的style；           
+              </div-->
+              <div style="width: 360px; height: 10px; position: relative; text-align: left; margin-left: 10px;  font-size: 12px;  font-weight: 300; color:#1e3d63 " >
+                color0:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color5);">■</span> h &nbsp;,&nbsp; s &nbsp;,&nbsp; l &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;（主题色）// 底框背景色、背景图拉伸色</span><br>
+                color1:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color1);">■</span> h &nbsp;,&nbsp; s*1.5 &nbsp;,&nbsp; l+18 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 主标题底框、表头背景色、表格线框</span><br>
+                color2:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color2);">■</span> h &nbsp;,&nbsp; s &nbsp;,&nbsp; l+8 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 表格背景色、奖励icon背景色</span><br>
+                color3:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color3);">■</span> &nbsp; 默认黑色 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 主标题字色、正文字色、奖励icon字色</span><br>
+                color4:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color4);">■</span> h &nbsp;,&nbsp; s*0.9 &nbsp;,&nbsp; l-26 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 次要字色、分点标识、底框描边</span>           
+              </div>            
+            </div>
+          </div>
+
+        </div>
+        <!--导出范围-->
+        <div id="export-img" style=" margin: -18px 12.5px -10px 12.5px;  width: 375px; height: 600px; transform: scale(0.95); transform-origin: center; background:var(--color5);" >
+          
+          <div id="bg-img" class="bg-img" style="width: 375px; height: 600px; ">
+            <div style="width: 375px; height: 600px; background: linear-gradient(to bottom, transparent 150px, var(--color5));">
+              <div style="height:60px;"></div>
+              <!--框内滚动-->
+              <div style="width: 375px; display: flex; justify-content: center;">
+                <div style="width: 355px; height: 510px; position: relative; background: var(--color5); border-radius: 5px; border: 1px solid var(--color4);">                 
+                  <!--一级标题-->
+                  <div style="height: 20px;"></div>
+                  <div style="width: 355px; height: 25px;display: flex; position: relative; justify-content: center; align-items: center;">                   
+                    <div style="border-radius: 16px; padding: 0px 10px 0px 10px; position: relative; text-align: center; color: var(--color3); font-size: 16px;  font-weight: 700; background-color: var(--color1); ">规则说明</div>
+                  </div>
+                  <div style="height: 20px;"></div>
+                  <!--二级标题1-->
+                  <div style="width: 355px; height: 22.50px;margin-left: 8px; display: flex; position: relative;justify-content: left;align-items: center;">
+                    <div style="width: 4.50px; height: 12px;position: relative; background: var(--color4); border-radius: 6px"></div>
+                    <div style="margin-left: 10px; position: relative; color: var(--color4); font-size: 15px;  font-weight: 700;">做任务应援主播（每日重置）</div>
+                  </div>
+                  <!--表格-->
+                  <div style="width: 355px; height: 142px;margin: 10px 0px 12px 0px; display: flex; position: relative;">
+                    <div style="width: 325px; height: 140px; margin-left: 20px; position: relative;background:var(--color1);border: 1px solid var(--color1);  border-radius: 5px; overflow: hidden">
+                      <div style="width: 326px; height: 35px;;display: flex; justify-content: center; align-items: center;">
+                        <div style="width: 162px; height: 35px;color: var(--color3);font-size: 12px;text-align: center;display: flex;justify-content: center; align-items: center;">
+                          任务
+                        </div>
+                        <div style="width: 162px; height: 35px;margin-left: 1px;color: var(--color3);font-size: 12px;text-align: center;display: flex;justify-content: center; align-items: center; ">
+                          奖励
+                        </div>
+                      </div>
+                      <div style="width: 325px; height: 35px;margin-top: 1px;display: flex; justify-content: left; align-items: center;">
+                        <div style="width: 162px; height: 35px;background-color: var(--color2);color: var(--color3);font-size: 12px;text-align: center;display: flex;justify-content: center; align-items: center;">
+                          任务名称名称
+                        </div>
+                        <div style="width: 162px; height: 35px;margin-left: 1px; background-color: var(--color2);color: var(--color3);font-size: 12px;text-align: center;display: flex;justify-content: center; align-items: center;">
+                          奖励名称名称
+                        </div>
+                      </div>
+                      <div style="width: 325px; height: 35px;margin-top: 1px;display: flex; justify-content: left; align-items: center;">
+                        <div style="width: 162px; height: 35px;background-color: var(--color2);color: var(--color3);font-size: 12px;text-align: center;display: flex;justify-content: center; align-items: center;">
+                          任务名称名称
+                        </div>
+                        <div style="width: 162px; height: 35px;margin-left: 1px; background-color: var(--color2);color: var(--color3);font-size: 12px;text-align: center;display: flex;justify-content: center; align-items: center;">
+                          奖励名称名称
+                        </div>
+                      </div>
+                      <div style="width: 325px; height: 35px;margin-top: 1px;display: flex; justify-content: left; align-items: center;">
+                        <div style="width: 162px; height: 35px;background-color: var(--color2);color: var(--color3);font-size: 12px;text-align: center;display: flex;justify-content: center; align-items: center;">
+                          任务名称名称
+                        </div>
+                        <div style="width: 162px; height: 35px;margin-left: 1px; background-color: var(--color2);color: var(--color3);font-size: 12px;text-align: center;display: flex;justify-content: center; align-items: center;">
+                          奖励名称名称
+                        </div>
+                      </div>                     
+                    </div>
+                  </div>
+                  <!--二级标题2-->
+                  <div style="width: 355px; height: 22.50px;margin-left: 8px; display: flex; position: relative;justify-content: left;align-items: center;">
+                    <div style="width: 4.50px; height: 12px;position: relative; background: var(--color4); border-radius: 6px"></div>
+                    <div style="margin-left: 10px; position: relative; color: var(--color4); font-size: 15px;  font-weight: 700;">完成所有任务</div>
+                  </div>
+                  <!--示意段落-->
+                  <div style="width: 355px; margin: 8px 0px 10px 0px; position: relative;justify-content: center;">
+                   
+                    <div style="width: 315.50px; margin-left: 8px;display: flex; position: relative; justify-content: left; align-items: center;">
+                      <div style="width: 6px; height: 6px; position: relative; border-radius: 50%; border: 1px var(--color4) solid"></div>                     
+                      <div style="margin-left: 10px; position: relative; color: var(--color3); font-size: 12px; font-weight: 400; ">
+                        策划提供文案策划提供文案策划提供文案                      
+                      </div>
+                    </div>
+                    <div style="width: 330px; margin-left: 8px;display: flex; position: relative; justify-content: left; align-items: center;">
+                      <div style="width: 6px; height: 6px; position: relative; border-radius: 50%; border: 1px var(--color4) solid"></div>                     
+                      <div style="margin-left: 10px; position: relative; color: var(--color3); font-size: 12px; font-weight: 400; ">
+                        策划提供文案策划提供文案策划提供文案策划提供文案策划                  
+                      </div>
+                    </div>
+                    <div style="width: 330px; margin-left: 8px;display: flex; position: relative; justify-content: left; align-items: center;">
+                      <div style="width: 6px; height: 6px; "></div>                     
+                      <div style="margin-left: 11px; position: relative; color: var(--color3); font-size: 12px; font-weight: 400; ">
+                        提供文案策划提供文案                  
+                      </div>
+                    </div>
+                    <div style="width: 330px; margin-left: 8px;display: flex; position: relative; justify-content: left; align-items: center;">
+                      <div style="width: 6px; height: 6px; "></div>                     
+                      <div style="margin-left: 11px; position: relative; color: var(--color4); font-size: 12px; font-weight: 400; ">
+                        策划提供文案策划提供文案策划提供文案               
+                      </div>
+                    </div>
+                    <div style="width: 330px; margin-left: 8px;display: flex; position: relative; justify-content: left; align-items: center;">
+                      <div style="width: 6px; height: 6px; "></div>                     
+                      <div style="margin-left: 11px; position: relative; color: var(--color4); font-size: 12px; font-weight: 400; ">
+                        策划提供文案策划提供文案策划提供文案策划提供文案策划                 
+                      </div>
+                    </div>
+
+                  </div>
+                  <!--奖励icon模块-->
+                  <div style="width: 355px; height: 104px;display: flex;  position: relative; justify-content: center; align-items: center;">
+                    <div style="width: 80px; height: 104px;  position: relative; background:var(--color2); margin: 0px 13px 0px 13px; border-radius: 5px; overflow: hidden">
+                      <div style="width: 80px; height: 24px; top: 80px; position: relative; background:var(--color1)">
+                        <div style="top: 3px; position: relative; color: var(--color3); font-size: 12px;  font-weight: 400;text-align: center; ">千里传音×1</div>
+                      </div>
+                    </div>
+                    <div style="width: 80px; height: 104px;  position: relative; background:var(--color2); margin: 0px 13px 0px 13px; border-radius: 5px; overflow: hidden">
+                      <div style="width: 80px; height: 24px; top: 80px; position: relative; background:var(--color1)">
+                        <div style="top: 3px; position: relative; color: var(--color3); font-size: 12px;  font-weight: 400;text-align: center; ">千里传音×1</div>
+                      </div>
+                    </div>
+                    <div style="width: 80px; height: 104px;  position: relative; background:var(--color2); margin: 0px 13px 0px 13px; border-radius: 5px; overflow: hidden">
+                      <div style="width: 80px; height: 24px; top: 80px; position: relative; background:var(--color1)">
+                        <div style="top: 3px; position: relative; color: var(--color3); font-size: 12px;  font-weight: 400;text-align: center; ">千里传音×1</div>
+                      </div>
+                    </div>                   
+                  </div>
+
+
+                  
+                </div>  
+              </div>
+            </div>             
+          </div>
+        </div>
+        <!--链接提色-->
+        <div style="width: 375x; height: 28px;display: flex; justify-content: left;align-items: center; position: relative;margin-top: 4px; ">
+          <input type="text" 
+                 id="imgurl" 
+                 
+                 value="https://cdn.discordapp.com/attachments/1093806222781730899/1218086493692624976/bg_6f83661.png?ex=66066273&is=65f3ed73&hm=8d5d46c1f963cbbff0d22f41685f91e634f0418e5fc5ecd74c458222575ea24d&"
+                 style="width:240px; height:18px; border-radius: 4px; margin-left: 20px;">
+          <button onclick="extractColor()" class="button2" style="margin-left: 24px;">
+            AI提色
+            <!--div class="tips2" style="width: 12px;height: 12px;border:2px solid #a3a3a3; border-radius: 50%;display: flex; justify-content: center;align-items: center; margin-left:2px; margin-top: -2px;" >
+              <span style="color: #a3a3a3; font-weight: 500; "> ? </span>
+              <span class="tips2text" style="font-size: 12px;">*仅支持链接,可将图片上传MJ，复制链接</span>
+            </div-->
+          </button>    
+        </div>
+        <!--手动提色-->
+        <div style="width: 375px; height: 30px;display: flex;align-items: center; margin-top: 10px;">
+          <!--上传背景图-->
+          <input type="file" id="imageInput" style="margin-left: 20px;">
+          <!--颜色选择和预览-->
+          <div style=" display: flex; justify-content:right; position: relative; margin-left: 4px;">
+            <input type="text" id="colorValue" value="#808080" style="width:60px; height:26px; border-radius: 4px; border:1px solid #727272; ">
+            <input type="color" value="#808080" id="colorPicker" class="color-box" onchange="updateColorValue()"><!--主题色选择-->
+          </div>
+        </div>
+        <!--导出图片-->
+        <div style="width: 375px; height: 40px; display: flex; margin-top: 10px; ">
+          <button  onclick="exportimg()" class="button" style="margin-left: 20px;">导出</button>
+          <div style="width: 20px;"></div>
+          <!--<button onclick="location.reload()" class="button2">重置</button>-->
+          <!--button onclick="reload()" class="button2">默认</button-->         
+          
+        </div>
+        <canvas id="canvas" style="display: none;"></canvas>
       </div>   
       
       
 
 
 <script>
-  //const colorPicker = document.getElementById('colorPicker');
-//colorPicker.addEventListener('input', function() {
-  //document.documentElement.style.setProperty('--color5', colorPicker.value);});
-  
+ 
 const colorPicker = document.getElementById('colorPicker');
 const root = document.documentElement;
 
 colorPicker.addEventListener('input', function() {
+  var checkbox = document.getElementById("themeSwitch")
+        if (checkbox.checked) {
+        colordark();
+      } else {
+        colorlight();
+      }
+ 
+  /*var tipsset = document.getElementById("pickertips");
+  var picker = colorPicker.value ;
+  var rgb1 = hexToRgb(picker);
+  var r1 = parseInt(rgb1[0]);
+  var g1 = parseInt(rgb1[1]);
+  var b1 = parseInt(rgb1[2]);
+  var a1 = (r1 * 299 + g1 * 587 + b1 * 114)/1000;
+
+      if (a1 > 127){
+        tipsset.style.display = "none";
+      }else if (a1 < 127){
+        
+      }else{
+        
+    }*/
+        
+});
+
+//判断所选颜色亮暗
+function pickertips(){
+  var tipsset = document.getElementById("pickertips");
+  var picker = colorPicker.value ;
+  var rgb = hexToRgb(picker);
+  var r = parseInt(rgb[0]);
+  var g = parseInt(rgb[1]);
+  var b = parseInt(rgb[2]);
+  var a = (r * 299 + g * 587 + b * 114)/1000;
+
+  if (a > 127){
+    tipsset.style.display = "none";
+  }else if (a < 127){
+    
+  }else{
+    
+  }
+}
+/*//颜色亮提示
+function toolight(){
+    var tips = document.createElement('div');
+        tips.className = 'tips';
+        tips.innerHTML = '当前颜色较亮，建议使用暗字色主题~';
+        document.body.appendChild(tips);
+
+    setTimeout(function() {
+      tips.remove();
+    }, 3000);
+}
+//颜色暗提示
+function tooldark(){
+    var tips = document.createElement('div');
+        tips.className = 'tips';
+        tips.innerHTML = '当前颜色较暗，建议使用暗字色主题~';
+        document.body.appendChild(tips);
+
+    setTimeout(function() {
+      tips.remove();
+    }, 3000);
+} */
+
+//亮字色主题
+function colorlight(){
   const color = colorPicker.value;
   const hsl = rgbToHsl(hexToRgb(color));
   
   root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`);
   root.style.setProperty('--color1', `hsl(${hsl.h}, ${hsl.s * 1.13 }%, ${hsl.l - 9}%)`);
   root.style.setProperty('--color2', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l + 12}%)`);
-  root.style.setProperty('--color4', `hsl(${hsl.h}, ${hsl.s - 21 }%, ${hsl.l + 26}%)`);
-});
+  root.style.setProperty('--color4', `hsl(${hsl.h}, ${hsl.s * 0.9 }%, ${hsl.l + 26}%)`);
+}
+//暗字色主题
+function colordark(){
+  const color = colorPicker.value;
+  const hsl = rgbToHsl(hexToRgb(color));
+  
+  root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`);
+  root.style.setProperty('--color1', `hsl(${hsl.h}, ${hsl.s * 1.5 }%, ${hsl.l + 18}%)`);
+  root.style.setProperty('--color2', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l + 8}%)`);
+  root.style.setProperty('--color4', `hsl(${hsl.h}, ${hsl.s * 0.9 }%, ${hsl.l - 26}%)`);
+}
 
 // 将16进制颜色值转换为RGB值
 function hexToRgb(hex) {
@@ -347,12 +582,14 @@ function updateColorValue() {
 const uploadInput = document.getElementById('imageInput');
 const myDiv = document.getElementById('bg-img');
 
+
 uploadInput.addEventListener('change', function() {
   const file = this.files[0];
   const reader = new FileReader();
 
   reader.onload = function(e) {
     myDiv.style.backgroundImage = `url(${e.target.result})`;
+    
   };
 
   reader.readAsDataURL(file);
@@ -369,21 +606,93 @@ function exportimg() {
             });
         }
 
-//重置
-function reload(){
-  document.documentElement.style.setProperty('--color5','hsl(0,0%,39%)');
-  document.documentElement.style.setProperty('--color1','hsl(0,0%,30%)');
-  document.documentElement.style.setProperty('--color2','hsl(0,0%,42%');
-  document.documentElement.style.setProperty('--color4','hsl(0,0%,65%)');
-  document.getElementById("imageInput").value = "";
 
-  colorPicker.value = "#646464";
-  colorValue.value = "#646464";
 
-  var bgElement = document.getElementById("bg-img");
-  bgElement.style.backgroundImage = 'url(https://raw.githubusercontent.com/YNYU01/Mini-Act-Tools/main/img/bg_%E8%A7%84%E5%88%99%E9%A1%B5.png)';
+
+const themeSwitch = document.getElementById('themeSwitch');
+const tips1 = document.getElementById('tips1');
+const tips2 = document.getElementById('tips2');
+
+themeSwitch.addEventListener('change', function() {
+  if (this.checked) {
+    document.documentElement.style.setProperty('--switch1','#c6c6c6');
+    document.documentElement.style.setProperty('--switch2','#505050');
+    document.documentElement.style.setProperty('--color3','hsl(0,0%,0%)');
+    tips1.style.display = "none";
+    tips2.style.display = "block";
+    colordark()
+  } else {
+    document.documentElement.style.setProperty('--switch1','#707070');
+    document.documentElement.style.setProperty('--switch2','#fff');
+    document.documentElement.style.setProperty('--color3','hsl(0,0%,100%)');
+    tips1.style.display = "block";
+    tips2.style.display = "none";
+    colorlight()
+  }
+});
+
+//RGB转HEX
+function rgbToHex(r,g,b){
+    var hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    return hex;
+}
+
+//提取主色
+
+function extractColor(){   
+    var url = document.getElementById("imgurl");
+    var urlvalue =url.value;
+    var img_url = urlvalue;
+
+		var img = new Image()
+		var canvas = document.getElementById('canvas')
+		var ctx = canvas.getContext('2d')
+		var page = document.querySelector('#app')
+		img.onload = function() {
+			ctx.drawImage(img, 0, 0)
+			img.style.display = 'none'
+			var imgData = (ctx.getImageData(0, 0, img.width, img.height)).data;
+      var r = imgData[0] ;
+      var g = imgData[1] ;
+      var b = imgData[2] ;
+      var a = (r * 299 + g * 587 + b * 114)/1000 ;
+      if ( a < 128){
+        var r = imgData[0] + 30;
+        var g = imgData[1] + 30;
+        var b = imgData[2] + 30;
+      }else{
+        var r = imgData[0] - 30;
+        var g = imgData[1] - 30;
+        var b = imgData[2] - 30;
+        }
+			var rgb = '(' + imgData[0] + ',' + imgData[1] + ',' + imgData[2] + ')'
+			root.style.setProperty('--color5', `rgb${rgb}`);
+      var aicolor = document.getElementById("colorValue")
+      var aicolor2 = document.getElementById("colorPicker")
+      aicolor.value = rgbToHex(r,g,b)
+      aicolor2.value = rgbToHex(r,g,b)
+      var checkbox = document.getElementById("themeSwitch")
+        if (checkbox.checked) {
+        colordark();
+      } else {
+        colorlight();
+      }
+		}
+		img.src = img_url;
+		img.crossOrigin = "anonymous"
 
 }
+
+//输入链接
+const  imgInput = document.getElementById("imgurl")
+const container = document.getElementById('bg-img');
+
+imgInput.oninput = function() {
+  var imageUrl = imgInput.value;
+  container.style.backgroundImage = 'url(' + imageUrl + ')';
+  
+};
+
 
 </script>
   </body>
