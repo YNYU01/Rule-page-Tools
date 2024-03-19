@@ -176,6 +176,7 @@
         position: absolute;
         font-size: 12px;
         border-radius: 10px; 
+        /*animation: tipsPickup 3s;*/
       }
 
       .theme-switch {
@@ -208,10 +209,25 @@
         transform: translateX(18px);
       }
 
+      @keyframes tipsPickup {
+        0%{
+          opacity: 0;
+          transform: translatey(50%);
+        }
+        30%{
+          opacity: 1;
+          transform: translatey(0);
+        }
+        100%{
+          opacity: 1;
+        }
+        
+      }
+
       </style>
   </head>
   <body style="font-family: Source Han Sans CN; display: flex; justify-content: center; position: relative;">
-    <div id="pickertips" style="padding: 10px;background-color: #000000ba;color: #fff; z-index: 1;bottom: 50%; position: absolute; font-size: 12px;border-radius: 10px;display: none;">当前颜色较亮,建议使用暗字色主题~</div>
+    <div id="pickertips" class="tips3" style="display: none;">当前颜色较亮,建议使用暗字色主题~</div>
       <div style="width: 400px; height: 850px;left:8px;  background-color: #eeeff3; border-radius: 10px;">
         
         <!--说明区-->
@@ -440,77 +456,52 @@ const colorPicker = document.getElementById('colorPicker');
 const root = document.documentElement;
 
 colorPicker.addEventListener('input', function() {
+  var tipsset = document.getElementById("pickertips");
+  var picker = colorPicker.value ;
+  var rgb = hexToRgb(picker);
+
+  const r = parseInt(picker.slice(1, 3), 16);
+  const g = parseInt(picker.slice(3, 5), 16);
+  const b = parseInt(picker.slice(5, 7), 16);
+  
+  
+
+  var a = (r * 299 + g * 587 + b * 114)/1000;
+      if ( a > 220){
+        var checkbox = document.getElementById("themeSwitch");
+        checkbox.checked = true;
+        darktips2()
+      }else if (a < 30) {
+        var checkbox = document.getElementById("themeSwitch");
+        checkbox.checked = false;
+        lighttips2()
+        
+      } else if ( a <= 220 ,a > 128) {
+        var checkbox = document.getElementById("themeSwitch");
+        checkbox.checked = true;
+        
+      }else {
+        var checkbox = document.getElementById("themeSwitch");
+        checkbox.checked = false;
+      }
+
   var checkbox = document.getElementById("themeSwitch")
         if (checkbox.checked) {
         colordark();
       } else {
         colorlight();
-      }
- 
-  /*var tipsset = document.getElementById("pickertips");
-  var picker = colorPicker.value ;
-  var rgb1 = hexToRgb(picker);
-  var r1 = parseInt(rgb1[0]);
-  var g1 = parseInt(rgb1[1]);
-  var b1 = parseInt(rgb1[2]);
-  var a1 = (r1 * 299 + g1 * 587 + b1 * 114)/1000;
+      };
 
-      if (a1 > 127){
-        tipsset.style.display = "none";
-      }else if (a1 < 127){
-        
-      }else{
-        
-    }*/
+ 
         
 });
 
-//判断所选颜色亮暗
-function pickertips(){
-  var tipsset = document.getElementById("pickertips");
-  var picker = colorPicker.value ;
-  var rgb = hexToRgb(picker);
-  var r = parseInt(rgb[0]);
-  var g = parseInt(rgb[1]);
-  var b = parseInt(rgb[2]);
-  var a = (r * 299 + g * 587 + b * 114)/1000;
-
-  if (a > 127){
-    tipsset.style.display = "none";
-  }else if (a < 127){
-    
-  }else{
-    
-  }
-}
-/*//颜色亮提示
-function toolight(){
-    var tips = document.createElement('div');
-        tips.className = 'tips';
-        tips.innerHTML = '当前颜色较亮，建议使用暗字色主题~';
-        document.body.appendChild(tips);
-
-    setTimeout(function() {
-      tips.remove();
-    }, 3000);
-}
-//颜色暗提示
-function tooldark(){
-    var tips = document.createElement('div');
-        tips.className = 'tips';
-        tips.innerHTML = '当前颜色较暗，建议使用暗字色主题~';
-        document.body.appendChild(tips);
-
-    setTimeout(function() {
-      tips.remove();
-    }, 3000);
-} */
 
 //亮字色主题
 function colorlight(){
   const color = colorPicker.value;
   const hsl = rgbToHsl(hexToRgb(color));
-  
+  document.documentElement.style.setProperty('--color3','hsl(0,0%,100%)');
   root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`);
   root.style.setProperty('--color1', `hsl(${hsl.h}, ${hsl.s * 1.13 }%, ${hsl.l - 9}%)`);
   root.style.setProperty('--color2', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l + 12}%)`);
@@ -520,7 +511,7 @@ function colorlight(){
 function colordark(){
   const color = colorPicker.value;
   const hsl = rgbToHsl(hexToRgb(color));
-  
+   document.documentElement.style.setProperty('--color3','hsl(0,0%,0%)');
   root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`);
   root.style.setProperty('--color1', `hsl(${hsl.h}, ${hsl.s * 1.5 }%, ${hsl.l + 18}%)`);
   root.style.setProperty('--color2', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l + 8}%)`);
@@ -613,23 +604,91 @@ const themeSwitch = document.getElementById('themeSwitch');
 const tips1 = document.getElementById('tips1');
 const tips2 = document.getElementById('tips2');
 
+//主题切换
 themeSwitch.addEventListener('change', function() {
   if (this.checked) {
     document.documentElement.style.setProperty('--switch1','#c6c6c6');
     document.documentElement.style.setProperty('--switch2','#505050');
-    document.documentElement.style.setProperty('--color3','hsl(0,0%,0%)');
     tips1.style.display = "none";
     tips2.style.display = "block";
     colordark()
+    darktips1()
   } else {
     document.documentElement.style.setProperty('--switch1','#707070');
     document.documentElement.style.setProperty('--switch2','#fff');
-    document.documentElement.style.setProperty('--color3','hsl(0,0%,100%)');
     tips1.style.display = "block";
     tips2.style.display = "none";
     colorlight()
+    lighttips1()
   }
 });
+
+var clickCount = 0
+//亮字色切换提示
+function lighttips1(){
+  if (clickCount >= 4 ){return}
+  var object = document.getElementById('pickertips');
+    object.style.display = "block";
+    object.style.animation = "tipsPickup 1s forwards";
+    object.innerHTML = "当前使用【亮字色】模式~";
+    setTimeout(function(){
+      object.style.display = "none";      
+    },1000);
+    clickCount++;
+}
+function lighttips2(){
+  var object = document.getElementById('pickertips');
+    object.style.display = "block";
+    object.style.animation = "tipsPickup 1s forwards";
+    object.innerHTML = "！！当前颜色过暗！！";
+    setTimeout(function(){
+      object.style.display = "none";      
+    },1000);
+}
+function lighttips(){
+
+  var object = document.getElementById('pickertips');
+    object.style.display = "block";
+    object.style.animation = "tipsPickup 1s forwards";
+    object.innerHTML = "当前使用【亮字色】模式~";
+    setTimeout(function(){
+      object.style.display = "none";      
+    },1000);
+    
+}
+
+//暗字色切换提示
+function darktips1(){
+  if (clickCount >= 4 ){return}
+  var object = document.getElementById('pickertips');
+    object.style.display = "block";
+    object.style.animation = "tipsPickup 1s forwards";
+    object.innerHTML = "当前使用【暗字色】模式~";
+    setTimeout(function(){
+      object.style.display = "none";      
+    },1000);
+    clickCount++;
+}
+function darktips2(){
+  var object = document.getElementById('pickertips');
+    object.style.display = "block";
+    object.style.animation = "tipsPickup 1s forwards";
+    object.innerHTML = "！！当前颜色过亮！！";
+    setTimeout(function(){
+      object.style.display = "none";      
+    },1000);
+}
+function darktips(){
+  
+  var object = document.getElementById('pickertips');
+    object.style.display = "block";
+    object.style.animation = "tipsPickup 1s forwards";
+    object.innerHTML = "当前使用【暗字色】模式~";
+    setTimeout(function(){
+      object.style.display = "none";      
+    },1000);
+    
+}
 
 //RGB转HEX
 function rgbToHex(r,g,b){
@@ -638,7 +697,6 @@ function rgbToHex(r,g,b){
 }
 
 //提取主色
-
 function extractColor(){   
     var url = document.getElementById("imgurl");
     var urlvalue =url.value;
@@ -656,15 +714,29 @@ function extractColor(){
       var g = imgData[1] ;
       var b = imgData[2] ;
       var a = (r * 299 + g * 587 + b * 114)/1000 ;
-      if ( a < 128){
+      if ( a < 90){
         var r = imgData[0] + 30;
         var g = imgData[1] + 30;
         var b = imgData[2] + 30;
-      }else{
+        var checkbox = document.getElementById("themeSwitch");
+        checkbox.checked = false;
+        lighttips()
+      }else if (a > 180) {
         var r = imgData[0] - 30;
         var g = imgData[1] - 30;
         var b = imgData[2] - 30;
-        }
+        var checkbox = document.getElementById("themeSwitch");
+        checkbox.checked = true;
+        darktips()
+      }else {
+        var r = imgData[0];
+        var g = imgData[1];
+        var b = imgData[2];
+        var checkbox = document.getElementById("themeSwitch");
+        checkbox.checked = false;
+        lighttips()
+      }
+        
 			var rgb = '(' + imgData[0] + ',' + imgData[1] + ',' + imgData[2] + ')'
 			root.style.setProperty('--color5', `rgb${rgb}`);
       var aicolor = document.getElementById("colorValue")
