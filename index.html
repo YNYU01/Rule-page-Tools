@@ -14,8 +14,8 @@
            --color4:hsl(0,0%,76%);
            --switch1:#707070;
            --switch2:#ffffff;
-           --switch3:#ffffff;
-           --switch4:#c43232;
+           --switch3:#000000;
+           --switch4:#e3ca26;
            }
 
       .color-5{
@@ -148,7 +148,7 @@
 
       .tips2 .tips2text{
         visibility: hidden;
-        width: 220px;
+        width: 120px;
         background-color: #000000d0;
         color: #ffffffac;
         text-align: left;
@@ -156,9 +156,9 @@
         padding: 5px;
         position: absolute;
         z-index: 1;
-        bottom: 20px;
+        top: 30px;
         left: 30%;
-        transform: translateX(-50%);
+        transform: translateX(-80%);
         opacity: 1;
         transition: opacity 0.3s;
       }
@@ -204,25 +204,13 @@
       .safa-switch {
         position: absolute;
         display: inline-block;
-        width: 8px;
-        height: 26px;
-        background-color:#c0c0c0;
-        border-radius: 10%;
-        margin-top: 0px;
+        color:var(--switch3);
+        background-color: var(--switch4); 
+        border-radius:0px 4px 4px 0px;
+        
       }
 
-      .safa-switch::before {        
-        content: "";
-        position: absolute;
-        width: 4px;
-        height: 10px;
-        border-radius: 14%;
-        border: 1px solid #000;
-        background-color: var(--switch3);
-        top: 2px;
-        left: 1px;
-        transition: transform 0.3s;
-      }
+      
 
       input[type="checkbox"] {
         display: none;
@@ -254,18 +242,18 @@
       </style>
   </head>
   <body style="font-family: Source Han Sans CN; display: flex; justify-content: center; position: relative;">
-    <div id="pickertips" class="tips3" style="display: none;">当前颜色较亮,建议使用暗字色主题~</div>
+      <div id="pickertips" class="tips3" style="display: none;">当前颜色较亮,建议使用暗字色主题~</div>
       <div style="width: 400px; height: 850px;left:8px;  background-color: #eeeff3; border-radius: 10px;">
         
         <!--说明区-->
         <div style=" width: 375px; height: 160px; top: 10px;  " >
             <div style="display: flex; justify-content: right; align-items: center;">
               <div style="width: 160px; display: flex; justify-content: right; align-items: center; text-align: right; font-size: 24px;  font-weight: 700; color:#444">
-                规则页模板2.0
+                规则页模板2.2
               </div>
               <div class="tips1" style="width: 16px;height: 16px;border:2px solid #a3a3a3; border-radius: 50%;display: flex; justify-content: center;align-items: center; margin-left:8px; margin-top: -2px;" >
                 <span style="color: #a3a3a3; font-weight: 500; "> ? </span>
-                <span class="tips1text" style="font-size: 12px;">1.选择文件上传背景图/上传MJ获取链接；<br>2.选择合适的主题色；<br>3.导出效果图，并复制色号修改模板的style； </span>
+                <span class="tips1text" style="font-size: 10px;">1.选择文件上传背景图&上传MJ获取链接提色(可选)；<br>2.提色微调/选择合适的主题色；<br>3.导出效果图，并复制色号修改模板的style； </span>
               </div>
               <div style="width: 90px;"></div>
               <!--主题开关-->
@@ -282,9 +270,6 @@
               <span style="color:#5189d7">亮字色</span>主题
             </div>
             <div style="display: flex;">
-              <!--div style=" width: 200px; height: 10px; position:relative;margin-left: 20px; text-align: left; font-size: 12px;  font-weight: 300; color:#40597e " >
-                1.选择文件上传背景图；<br>2.选择合适的主题色；<br>3.导出效果图，并复制色号修改模板的style；           
-              </div-->
               <div style="width: 360px; height: 10px; position: relative; text-align: left; margin-left: 10px;  font-size: 12px;  font-weight: 300; color:#1e3d63 " >
                 color0:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color5);">■</span> h &nbsp;,&nbsp; s &nbsp;,&nbsp; l &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;（主题色）// 底框背景色、背景图拉伸色</span><br>
                 color1:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color1);">■</span> h &nbsp;,&nbsp; s*1.13 &nbsp;,&nbsp; l-9 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 主标题底框、表头背景色、表格线框</span><br>
@@ -300,10 +285,7 @@
               *当前使用
               <span style="color:#824ab0">暗字色</span>主题
             </div>
-            <div style="display: flex;">
-              <!--div style=" width: 200px; height: 10px; position:relative;margin-left: 20px; text-align: left; font-size: 12px;  font-weight: 300; color:#40597e " >
-                1.选择文件上传背景图；<br>2.选择合适的主题色；<br>3.导出效果图，并复制色号修改模板的style；           
-              </div-->
+            <div style="display: flex;">             
               <div style="width: 360px; height: 10px; position: relative; text-align: left; margin-left: 10px;  font-size: 12px;  font-weight: 300; color:#1e3d63 " >
                 color0:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color5);">■</span> h &nbsp;,&nbsp; s &nbsp;,&nbsp; l &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;（主题色）// 底框背景色、背景图拉伸色</span><br>
                 color1:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color1);">■</span> h &nbsp;,&nbsp; s*1.5 &nbsp;,&nbsp; l+18 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 主标题底框、表头背景色、表格线框</span><br>
@@ -460,25 +442,27 @@
           <!--颜色选择和预览-->
           <div style=" display: flex; justify-content:right; position: relative; margin-left: 4px;">
             <input type="text" id="colorValue" value="#808080" style="width:60px; height:26px; border-radius: 4px; border:1px solid #727272; ">
-            <input type="color" value="#808080" id="colorPicker" class="color-box" onchange="updateColorValue()"><!--主题色选择-->
-            <div style="width: 6px;"></div>
-            <div style="width: 14px; height: 22px; color:var(--switch3);font-size: 12px; text-align: center; line-height: 10px;padding: 2px;background-color: var(--switch4); border-radius: 10%;">SA<br>FA</div>
-            <div >
-              <input type="checkbox" id="safaSwitch" style="width: 28px; height: 14px;"></input>
-              <label for="safaSwitch" class="safa-switch">
-              </label>
-            </div>
+              <div style="width: 51px; height: 26px; border:1px solid #727272; border-radius: 6px;">
+                <input type="color" value="#808080" id="colorPicker" style="width: 30px; height:26px; border-radius: 4px 0px 0px 4px; border:1px solid #727272;" ><!--主题色选择-->
+                <div class="tips2" style="position: absolute;">        
+                  <span class="tips2text" style="font-size: 10px; text-align: center;">关闭后可选择非安全色</span>
+                  <input type="checkbox" id="safaSwitch" ></input>
+                  <label for="safaSwitch" class="safa-switch" style="width: 14px; height: 19px;font-size: 10px; text-align: center; line-height: 10px;padding: 3px;border:1px solid #727272; box-shadow:0px 0px 4px #ffffff84 inset;  ">
+                    SA<br>FA
+                  </label>
+                </div>
+              </div>
           </div>
         </div>
         <!--导出图片-->
         <div style="width: 375px; height: 40px; display: flex; margin-top: 10px; ">
           <button  onclick="exportimg()" class="button" style="margin-left: 20px;">导出</button>
-          <div style="width: 20px;"></div>
+          <div style="width: 190px;"></div>
           <!--<button onclick="location.reload()" class="button2">重置</button>-->
           <!--button onclick="reload()" class="button2">默认</button-->         
-          
+          <div class="text-1" style="margin-top: 8px; color: #a4a4a4; transform: skewX(-8deg); font-size: 8px;">✦✦  2024.3.27 最近更新</div>
         </div>
-        <canvas id="canvas" style="display: none;"></canvas>
+        <canvas id="canvas" style="display: none; "></canvas>
       </div>   
       
       
@@ -504,29 +488,51 @@ colorPicker.addEventListener('input', function() {
   var l = (r * 299 + g * 587 + b * 114)/1000;
   var s = (max - min)/max * 100;
 
-
-  //先判断饱和度，再判断明度
-  if (s >= 74){ 
-    stips1()
-  } else if (s <= 18){
-    stips2()
-  } else {
-    if ( l > 220){
-    var checkbox = document.getElementById("themeSwitch");
-    checkbox.checked = true;
-    darktips2()
-    }else if (l < 50) {
-      var checkbox = document.getElementById("themeSwitch");
-      checkbox.checked = false;
-      lighttips2()       
-    } else if ( l <= 220 ,l > 128) {
+  //安全模式
+  var checkbox1 = document.getElementById("safaSwitch")
+  if (checkbox1.checked){
+    if (l>128){
       var checkbox = document.getElementById("themeSwitch");
       checkbox.checked = true;
       changeColor()
+      updateColorValue()
     }else {
       var checkbox = document.getElementById("themeSwitch");
       checkbox.checked = false;
       changeColor()
+      updateColorValue()
+    }
+    
+  }else{
+    //先判断明度，再判断饱和度
+    if (l > 220){
+      darktips2()
+    }else if ( l < 50){
+      lighttips2()
+    }else if ( l <= 220 , l > 128 ){
+        var checkbox = document.getElementById("themeSwitch");
+        
+        if (s >= 70){ 
+        stips1()
+        } else if (s <= 10){
+          stips2()
+        } else {
+          checkbox.checked = true;
+          changeColor()
+          updateColorValue()
+        }
+    }else {
+        var checkbox = document.getElementById("themeSwitch");
+        
+        if (s >= 78){ 
+          stips1()
+        } else if (s <= 18){
+          stips2()
+        } else {
+          checkbox.checked = false;
+          changeColor()
+          updateColorValue()
+        }
     }
   }
 
@@ -684,10 +690,10 @@ themeSwitch.addEventListener('change', function() {
 safaSwitch.addEventListener('change', function() {
   if (this.checked) {
     document.documentElement.style.setProperty('--switch3','#909090');
-    document.documentElement.style.setProperty('--switch4','#b0b0b0');
+    document.documentElement.style.setProperty('--switch4','#c0c0c0');
   } else {
-    document.documentElement.style.setProperty('--switch3','#ffffff');
-    document.documentElement.style.setProperty('--switch4','#c43232');
+    document.documentElement.style.setProperty('--switch3','#000000');
+    document.documentElement.style.setProperty('--switch4','#e3ca26');
   }
 });
 
