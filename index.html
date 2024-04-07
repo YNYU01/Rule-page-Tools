@@ -533,7 +533,9 @@ colorPicker.addEventListener('input', function() {
   
   var max = Math.max(r,g,b)
   var min = Math.min(r,g,b)
-  var l = (r * 299 + g * 587 + b * 114)/1000;
+
+  var num = (r/255 + (1.5 * g)/255 + (0.6 * b)/255) / (1 + 1.5 + 0.6)
+  var l = num * 255 ;
   var s = (max - min)/max * 100;
 
   //安全模式
@@ -928,7 +930,8 @@ function addSvg() {
     var max = Math.max(r,g,b)
     var min = Math.min(r,g,b)
   
-    var l = (r * 299 + g * 587 + b * 114)/1000;
+    var num = (r/255 + (1.5 * g)/255 + (0.6 * b)/255) / (1 + 1.5 + 0.6)
+    var l = num * 255 ;
     var s = (max - min)/max * 100;
   
     
@@ -1022,7 +1025,7 @@ const addSVG = document.getElementById('addSVG');
 imgurlInput.oninput = function() {
   var imageUrl = imgurlInput.value;
   container.style.backgroundImage = 'url(' + imageUrl + ')';
-  
+  extractColor()
 };
 
 const  imgurlInput2 = document.getElementById("imgSVG")
@@ -1031,7 +1034,7 @@ imgurlInput2.oninput = function() {
   var imageData2 = imgurlInput2.value
   container.style.backgroundImage ="url('data:image/svg+xml,"  + encodeURIComponent(imageData2) + "') no-repeat"
   addSVG.innerHTML = imageData2
-
+  extractColor()
 }
 
 
