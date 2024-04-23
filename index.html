@@ -7,11 +7,11 @@
       
       <style>
       :root{
-           --color5:hsl(0,0%,50%);
-           --color1:hsl(0,0%,41%);
-           --color2:hsl(0,0%,62%);
+           --color5:hsl(0,0%,60%);
+           --color1:hsl(0,0%,52%);
+           --color2:hsl(0,0%,72%);
            --color3:hsl(0,0%,100%);
-           --color4:hsl(0,0%,76%);
+           --color4:hsl(0,0%,85%);
            --switch1:#707070;
            --switch2:#ffffff;
            --switch3:#000000;
@@ -103,6 +103,26 @@
       .button2:hover {
         background-color: rgb(120, 120, 120);
         color: #505050;
+      }
+
+      .button3 {
+        text-align: center;
+        line-height: 8px;
+        display: flex;
+        align-items: center;
+        position: relative;       
+        height:26px; 
+        border-radius: 4px;
+        background-color: rgb(192, 192, 192);
+        color: rgb(0, 0, 0);
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .button3:hover {
+        background-color: rgb(63, 113, 164);
+        color: #ffffff;
       }
 
       .tips1{
@@ -267,10 +287,10 @@
       <div style="width: 400px; height: 850px; background-color: #eeeff3; border-radius: 10px;display: flex;flex-direction: column;justify-content: left;align-items: center;position: relative;">
         
         <!--说明区-->
-        <div style=" width: 400px; height: 140px; top: 10px;  " >
+        <div style=" width: 400px; height: 180px; top: 10px;  " >
             <div style="display: flex;position: relative; justify-content: center; align-items: center;">
-              <div class="tips1"  style="width: 240px; display: flex; justify-content: center; align-items: center; text-align: center; font-size: 24px;  font-weight: 700; color:#444">
-                规则页模板2.3&nbsp;
+              <div class="tips1"  style=" display: flex; justify-content: center; align-items: center; text-align: center; font-size: 24px;  font-weight: 700; color:#444">
+                规则页模板2.4 <span class="text-1" style="height: 28px;color: #824ab0; transform: skewX(-18deg);">Bata</span> &nbsp;
                 <span style="width: 16px;height: 16px; border:2px solid #a3a3a3; border-radius: 50%;display: flex; justify-content: center;align-items: center; margin-top: -2px; color: #a3a3a3; font-weight: 500;font-size: 14px; "> ? </span>
                 <span class="tips1text" style="font-size: 10px; font-weight: 300;">1.通过本地文件传背景图（自动提色）<br>2.提色微调/选择合适的主题色；<br>3.导出效果图，并复制色号修改模板的style；<br>或创建svg，复制到Figma/Matergo中（bate） </span>
               </div>
@@ -282,43 +302,47 @@
               </div>
             </div>
             
-          <div id="tips1" style="width: 400px; height: 110px;transform: scale(0.9); transform-origin: top center;  position: relative; border-radius: 4px; background-color: #d3d7de; display: block;" >
+          <div id="tips1" style="width: 400px; height: 150px;transform: scale(0.9); transform-origin: top center;  position: relative; border-radius: 4px; background-color: #d3d7de; display: block;" >
             <div style="position: relative; text-align: left;  transform: skewX(-10deg); margin-left: 10px;  font-size: 10px; font-weight: 500; color:#898c96;" >
               *当前使用
               <span style="color:#5189d7">亮字色</span>主题
             </div>
             <div style="display: flex;">
-              <div style="width: 360px; height: 10px; position: relative; text-align: left; margin-left: 10px;  font-size: 12px;  font-weight: 300; color:#1e3d63 " >
-                color0:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color5);">■</span> h &nbsp;,&nbsp; s &nbsp;,&nbsp; l &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;（主题色）// 底框背景色、背景图拉伸色</span><br>
-                color1:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color1);">■</span> h &nbsp;,&nbsp; s*1.13 &nbsp;,&nbsp; l-9 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 主标题底框、表头背景色、表格线框</span><br>
-                color2:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color2);">■</span> h &nbsp;,&nbsp; s &nbsp;,&nbsp; l+12 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 表格背景色、奖励icon背景色</span><br>
-                color3:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color3);">■</span> &nbsp; 默认白色 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 主标题字色、正文字色、奖励icon字色</span><br>
-                color4:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color4);">■</span> h &nbsp;,&nbsp; s*0.9 &nbsp;,&nbsp; l+26 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 次要字色、分点标识、底框描边</span>           
+              <div style=" position: relative; text-align: left; margin-left: 10px;  font-size: 12px;  font-weight: 300; color:#1e3d63 " >
+                校正:S = [(s/10 - (s/100 + 1)^3) * (s/60 + 1)]*10 <span style="color: #898c96;"> // 超出63则衰减 </span> <br>
+                校正:L = [(l/10 - (l/100 + 1)^3) * (l/60 + 3)]*10 <span style="color: #898c96;">// 低于20&超出83则衰减 </span> <br>
+                color0:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color5);">■</span> h , S , L  <span style="color: #898c96;"> （主题色校正后）// 底框背景色、背景图拉伸色</span><br>
+                color1:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color1);">■</span> h , S*1.13 , L-8  <span style="color: #898c96;"> // 主标题底框、表头背景色、表格线框</span><br>
+                color2:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color2);">■</span> h , S , L+12  <span style="color: #898c96;"> // 表格背景色、奖励icon背景色</span><br>
+                color3:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color3);">■</span> h , S , L+50  <span style="color: #898c96;"> // 主标题字色、正文字色、奖励icon字色</span><br>
+                color4:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color4);">■</span> h , S , L+26 &nbsp; <span style="color: #898c96;"> // 次要字色、分点标识、底框描边</span>           
               </div>            
             </div>
           </div>
 
-          <div id="tips2" style="width: 400px; height: 110px;transform: scale(0.9); transform-origin: top center;  position: relative; border-radius: 4px; background-color: #d3d7de; display: none;" >
+          <div id="tips2" style="width: 400px; height: 150px;transform: scale(0.9); transform-origin: top center;  position: relative; border-radius: 4px; background-color: #d3d7de; display: none;" >
             <div style="position: relative; text-align: left;  transform: skewX(-10deg); margin-left: 10px;  font-size: 10px; font-weight: 500; color:#898c96;" >
               *当前使用
               <span style="color:#824ab0">暗字色</span>主题
             </div>
             <div style="display: flex;">             
-              <div style="width: 360px; height: 10px; position: relative; text-align: left; margin-left: 10px;  font-size: 12px;  font-weight: 300; color:#1e3d63 " >
-                color0:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color5);">■</span> h &nbsp;,&nbsp; s &nbsp;,&nbsp; l &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;（主题色）// 底框背景色、背景图拉伸色</span><br>
-                color1:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color1);">■</span> h &nbsp;,&nbsp; s*1.5 &nbsp;,&nbsp; l+18 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 主标题底框、表头背景色、表格线框</span><br>
-                color2:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color2);">■</span> h &nbsp;,&nbsp; s &nbsp;,&nbsp; l+8 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 表格背景色、奖励icon背景色</span><br>
-                color3:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color3);">■</span> &nbsp; 默认黑色 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 主标题字色、正文字色、奖励icon字色</span><br>
-                color4:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color4);">■</span> h &nbsp;,&nbsp; s*0.9 &nbsp;,&nbsp; l-26 &nbsp; <span style="color: #898c96;">&nbsp;&nbsp;  // 次要字色、分点标识、底框描边</span>           
+              <div style=" position: relative; text-align: left; margin-left: 10px;  font-size: 12px;  font-weight: 300; color:#1e3d63 " >
+                校正:S = [(s/10 - (s/100 + 1)^3) * (s/60 + 1)]*10 <span style="color: #898c96;"> // 超出63则衰减 </span> <br>
+                校正:L = [(l/10 - (l/100 + 1)^3) * (l/60 + <span style="color: #cc243a;">4</span>)]*10 <span style="color: #898c96;">// 低于30&超出93则衰减 </span> <br>
+                color0:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color5);">■</span> h , S , L  <span style="color: #898c96;"> （主题色校正后）// 底框背景色、背景图拉伸色</span><br>
+                color1:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color1);">■</span> h , S*1.13 , L-6  <span style="color: #898c96;"> // 主标题底框、表头背景色、表格线框</span><br>
+                color2:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color2);">■</span> h , S , L+8  <span style="color: #898c96;"> // 表格背景色、奖励icon背景色</span><br>
+                color3:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color3);">■</span> h , S , L-34  <span style="color: #898c96;"> // 主标题字色、正文字色、奖励icon字色</span><br>
+                color4:&nbsp;<span style="-webkit-text-stroke:1px #1e3d63; color: var(--color4);">■</span> h , S , L-24 &nbsp; <span style="color: #898c96;"> // 次要字色、分点标识、底框描边</span>            
               </div>            
             </div>
           </div>
 
         </div>
         <!--导出范围-->
-        <div style="width: 375px; height: 600px;margin-bottom: -120px; display: flex;flex-direction: column;justify-content: left;align-items: center;position: relative; ">
-          <div id="imgs" style="width: 375px; height: 600px; background-size:100%; transform: scale(0.8); transform-origin: top center; display: none;"></div>
-          <div id="export-img" style=" width: 375px; height: 600px;  background:var(--color5); transform: scale(0.8); transform-origin: top center;" >
+        <div style="width: 375px; height: 600px;margin-bottom: -150px; display: flex;flex-direction: column;justify-content: left;align-items: center;position: relative; ">
+          <div id="imgs" style="width: 375px; height: 600px; background-size:100%; transform: scale(0.75); transform-origin: top center; display: none;"></div>
+          <div id="export-img" style=" width: 375px; height: 600px;  background:var(--color5); transform: scale(0.75); transform-origin: top center;" >
             <div id="bg-img" class="bg-img" style="width: 375px; height: 600px;top: 0px;left: 0px; position: absolute; z-index: 0;"></div>
             <div  style="width: 375px; height: 600px; ">
 
@@ -492,7 +516,7 @@
                 </label>
               </div>
             </div>
-            
+            <button  onclick="AIcolor()" class="button3" style="position: absolute; right: 0px;">AI提色</button>
           </div>
         </div>
         
@@ -502,7 +526,7 @@
           <button  onclick="copyimg()" class="button2" style="margin-left: 8px;">创建SVG</button>
           <!--<button onclick="location.reload()" class="button2">重置</button>-->
           <!--button onclick="reload()" class="button2">默认</button-->         
-          <div class="text-1" style="margin-top: 8px; color: #a4a4a4; transform: skewX(-8deg); font-size: 8px;left:0px; position: absolute;">✦✦  2024.4.8 最近更新</div>
+          <div class="text-1" style="margin-top: 8px; color: #a4a4a4; transform: skewX(-8deg); font-size: 8px;left:0px; position: absolute; text-align: left;">✦✦  2024.4.23 最近更新 <br> ·颜色校正公式 &nbsp; ·主文案彩色 &nbsp; ·色阶优化</div>
         </div>
         
         <div id="log" style="width: 400px; height: 20px; font-size: 12px; color: #972a37;"></div>
@@ -516,13 +540,15 @@
 <script>
 
 
-themeChange()
-addUrl()
-addSvg()
+  themeChange()
+  addUrl()
+  addSvg()
 
- 
+  const log = document.getElementById('log');
+
   const colorPicker = document.getElementById('colorPicker');
   const root = document.documentElement;
+  
 
   //颜色选择器同步换色
   colorPicker.addEventListener('input', function() {
@@ -544,28 +570,30 @@ addSvg()
     //安全模式
     var checkbox1 = document.getElementById("safaSwitch")
     if (checkbox1.checked){
-      if (l>128){
+      if (l>150){
         var checkbox = document.getElementById("themeSwitch");
         checkbox.checked = true;
         changeColor()
         updateColorValue()
+        tipsTodark()
       }else {
         var checkbox = document.getElementById("themeSwitch");
         checkbox.checked = false;
         changeColor()
         updateColorValue()
+        tipsTolight()
       }
       
     }else{
       //先判断明度，再判断饱和度
-      if (l > 220){
+      if (l > 230){
         darktips2()
       }else if ( l < 50){
         lighttips2()
-      }else if ( l <= 220 , l > 128 ){
+      }else if ( l <= 230 , l > 150 ){
           var checkbox = document.getElementById("themeSwitch");
           
-          if (s >= 70){ 
+          if (s >= 94){ 
           stips1()
           } else if (s <= 10){
             stips2()
@@ -573,11 +601,12 @@ addSvg()
             checkbox.checked = true;
             changeColor()
             updateColorValue()
+            tipsTodark()
           }
       }else {
           var checkbox = document.getElementById("themeSwitch");
           
-          if (s >= 78){ 
+          if (s >= 90){ 
             stips1()
           } else if (s <= 18){
             stips2()
@@ -585,6 +614,7 @@ addSvg()
             checkbox.checked = false;
             changeColor()
             updateColorValue()
+            tipsTolight()
           }
       }
     }
@@ -607,21 +637,42 @@ function changeColor(){
 function colorlight(){
   const color = colorPicker.value;
   const hsl = rgbToHsl(hexToRgb(color));
-  document.documentElement.style.setProperty('--color3','hsl(0,0%,100%)');
-  root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`);
-  root.style.setProperty('--color1', `hsl(${hsl.h}, ${hsl.s * 1.13 }%, ${hsl.l - 9}%)`);
-  root.style.setProperty('--color2', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l + 12}%)`);
-  root.style.setProperty('--color4', `hsl(${hsl.h}, ${hsl.s * 0.9 }%, ${hsl.l + 26}%)`);
+  
+  var H = hsl.h;
+  var S = hsl.s ;
+  var L = hsl.l;
+  //衰减运算
+  var S1 = [(S/10 - Math.pow((S/100 + 1),3) ) * (S/60 + 1) + 1 ]*10;
+  var L1 = [(L/10 - Math.pow((L/100 + 1),3) ) * (L/60 + 1) + 3 ]*10;
+
+  //测试  
+  log.innerHTML = S1 + "," + L1;
+
+  root.style.setProperty('--color5', "hsl(" + H +","+ S1 + "%,"+ L1 +"%)");
+  root.style.setProperty('--color1', "hsl(" + H +","+ (S1*1.13) + "%,"+ (L1 - 8) +"%)");
+  root.style.setProperty('--color2', "hsl(" + H +","+ S1 + "%,"+ (L1 + 12) +"%)");
+  root.style.setProperty('--color4', "hsl(" + H +","+ S1 + "%,"+ (L1 + 26) +"%)");
+  root.style.setProperty('--color3', "hsl(" + H +","+ S1 + "%,"+ (L1 + 50) +"%)");
 }
 //暗字色主题
 function colordark(){
   const color = colorPicker.value;
   const hsl = rgbToHsl(hexToRgb(color));
-   document.documentElement.style.setProperty('--color3','hsl(0,0%,0%)');
-  root.style.setProperty('--color5', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`);
-  root.style.setProperty('--color1', `hsl(${hsl.h}, ${hsl.s * 1.5 }%, ${hsl.l + 18}%)`);
-  root.style.setProperty('--color2', `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l + 8}%)`);
-  root.style.setProperty('--color4', `hsl(${hsl.h}, ${hsl.s * 0.9 }%, ${hsl.l - 26}%)`);
+  var H = hsl.h;
+  var S = hsl.s ;
+  var L = hsl.l;
+  //衰减运算
+  var S1 = [(S/10 - Math.pow((S/100 + 1),3) ) * (S/60 + 1) + 1 ]*10;
+  var L1 = [(L/10 - Math.pow((L/100 + 1),3) ) * (L/60 + 1) + 4 ]*10;
+
+  //测试 
+  log.innerHTML = S1 + "," + L1;
+
+  root.style.setProperty('--color5', "hsl(" + H +","+ S1 + "%,"+ L1 +"%)");
+  root.style.setProperty('--color1', "hsl(" + H +","+ (S1*1.1) + "%,"+ (L1 - 6) +"%)");
+  root.style.setProperty('--color2', "hsl(" + H +","+ S1 + "%,"+ (L1 + 8) +"%)");
+  root.style.setProperty('--color4', "hsl(" + H +","+ S1 + "%,"+ (L1 - 24) +"%)");
+  root.style.setProperty('--color3', "hsl(" + H +","+ S1 + "%,"+ (L1 - 34) +"%)");
 }
 
 // HEX转RGB
@@ -682,8 +733,6 @@ function updateColorValue() {
     }
 
 //上传背景图
-
-
   var uploadInput = document.getElementById('imageInput');
   var bgs = document.getElementById('bg-img');
   var file = uploadInput.files[0];
@@ -702,9 +751,18 @@ function updateColorValue() {
     
 
   });
+
+  function AIcolor(){
+    imgColor() 
+    /*var link = document.createElement('a');
+                link.href = canvas.toDataURL();
+                link.download = 'screenshot.png';
+                link.click();*/
+}
+
 //提取主色
   function imgColor() {
-  html2canvas(document.getElementById("bg-img"),{scale: 0.5}).then(function(canvas) {
+  html2canvas(document.getElementById("bg-img"),{scale: 1}).then(function(canvas) {
     var imageData = canvas.toDataURL("image/png");
 
     var img_url = imageData ;
@@ -720,7 +778,7 @@ function updateColorValue() {
       ctx.drawImage(img, 0, 0)
       img.style.display = 'none'
 
-      var imgData = (ctx.getImageData(0, 0, img.width, img.height)).data;
+      var imgData = (ctx.getImageData(0, 0, img.width, img.height )).data;
       
       var r = imgData[0] ;
       var g = imgData[1] ;
@@ -930,29 +988,32 @@ function addSvg() {
 
 
 function themeChange(){
-const themeSwitch = document.getElementById('themeSwitch');
-const safaSwitch = document.getElementById('safaSwitch');
-const tips1 = document.getElementById('tips1');
-const tips2 = document.getElementById('tips2');
+  var themeSwitch = document.getElementById('themeSwitch');
+  var safaSwitch = document.getElementById('safaSwitch');
+  var tips1 = document.getElementById('tips1');
+  var tips2 = document.getElementById('tips2');
 
-//主题切换
-themeSwitch.addEventListener('change', function() {
-  if (this.checked) {
-    document.documentElement.style.setProperty('--switch1','#c6c6c6');
-    document.documentElement.style.setProperty('--switch2','#505050');
-    tips1.style.display = "none";
-    tips2.style.display = "block";
-    colordark()
-    darktips1()
-  } else {
-    document.documentElement.style.setProperty('--switch1','#707070');
-    document.documentElement.style.setProperty('--switch2','#fff');
-    tips1.style.display = "block";
-    tips2.style.display = "none";
-    colorlight()
-    lighttips1()
-  }
+  //主题切换
+  themeSwitch.addEventListener('change', function() {
+    if (this.checked) {
+      document.documentElement.style.setProperty('--switch1','#c6c6c6');
+      document.documentElement.style.setProperty('--switch2','#505050');
+      tips1.style.display = "none";
+      tips2.style.display = "block";
+      colordark()
+      darktips1()
+    } else {
+      document.documentElement.style.setProperty('--switch1','#707070');
+      document.documentElement.style.setProperty('--switch2','#fff');
+      tips1.style.display = "block";
+      tips2.style.display = "none";
+      colorlight()
+      lighttips1()
+    }
 });
+
+
+
 //安全模式（默认开启）
 safaSwitch.addEventListener('change', function() {
   if (this.checked) {
@@ -965,6 +1026,21 @@ safaSwitch.addEventListener('change', function() {
 });
 
 }
+
+function tipsTodark(){
+  var tips1 = document.getElementById('tips1');
+  var tips2 = document.getElementById('tips2');
+  tips1.style.display = "none";
+  tips2.style.display = "block";
+}
+
+function tipsTolight(){
+  var tips1 = document.getElementById('tips1');
+  var tips2 = document.getElementById('tips2');
+  tips1.style.display = "block";
+  tips2.style.display = "none";
+}
+
 
 var clickCount = 0
 //亮字色切换提示--有限次数
@@ -1058,7 +1134,7 @@ function stips2(){
 
 //导出预览图
 function exportimg() {
-            html2canvas(document.getElementById("export-img"),{scale: 2.5}).then(function(canvas) {
+            html2canvas(document.getElementById("export-img"),{scale: 2.66}).then(function(canvas) {
                 var link = document.createElement('a');
                 link.href = canvas.toDataURL();
                 link.download = 'screenshot.png';
