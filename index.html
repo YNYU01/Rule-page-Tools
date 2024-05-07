@@ -2,6 +2,7 @@
   <html lang="en">
   <head>
       <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+      <script src="https://github.com/zenorocha/clipboard.js/blob/master/src/clipboard.js"></script>
       <meta charset="UTF-8">
       <title>Rule-page Tools</title>
       
@@ -478,29 +479,19 @@
           </button>    
         </div-->
         <div style="width: 375px;height: auto; display: flex;flex-direction: column;justify-content: left;position: relative;">
-          <div style="height: 20px; text-align: center;color: #a7a7a7;line-height: 1.5ch;">-------------------------------------------------------------------<br>
-            <span style="font-size: 10px;user-select: none; ">SVG功能容易卡崩，慎用</span>
-            <span id="log" style="font-size: 10px;user-select: none; color: #972a37; position: absolute; right:0px;"> 校正值:--</span>
+          <div style="height: 10px; text-align: center;color: #a7a7a7;line-height: 1.5ch;">-------------------------------------------------------------------<br>
+            <!--span style="font-size: 10px;user-select: none; ">SVG功能容易卡崩，慎用</span-->
+            <span id="log" style="font-size: 10px;user-select: none; color: #972a37; position: absolute; right:0px;"> color0校正值:-- </span>
           </div>
           <div  style="font-size: 14px; margin-top: 8px;color: #777;"> [配置背景图]</div>
           <div style="display: flex; font-size: 14px;align-items: center;">
             本地：
             <input type="file" id="imageInput" style="margin-top: 4px;">
           </div>
-          <div style="display: flex; font-size: 14px;align-items: center; display: none;">
-            链接：
-            <input type="text" id="imgurl"  style="width:300px; height:18px; border-radius: 4px;border:1px solid #727272; margin-top: 4px;">
-          </div>
-          <div style="display: flex; font-size: 14px;align-items: center;display: none;">
-            <span style="letter-spacing: 0.1ch; ">SVG</span>：
-            <input type="text" id="imgSVG" style="width:240px; height:18px; border-radius: 4px;border:1px solid #727272; margin-top: 4px; ">
-            <button onclick="extractColor()" class="button2 tips4" style="right:0px; position: absolute; ">
-              AI提色<span class="tips4text" style="font-size: 10px;">*仅支持svg提色</span>
-            </button>
-          </div>
           <div style="display: flex; font-size: 14px;align-items: center;">
-            创建：
-            <input type="text" id="imgSVG2" style="width:326px; height:18px; border-radius: 4px;border:1px solid #727272; margin-top: 4px; ">
+            SVG：
+            <textarea  id="imgSVG2" style="width:320px; height:36px; max-width:320px; max-height:36px; min-height:18px;border-radius: 4px;border:1px solid #727272; margin-top: 4px;  "></textarea>
+            <!--button class="button2 text-1" data-clipboard-target="#imgSVG2" style="padding: 6px; width: 40px; height: 21px;border-radius: 4px;border:1px solid #727272; margin-top: 4px; ">复制</button-->
           </div>
           
           <div  style="font-size: 14px;margin-top: 8px;color: #777;"> [配置颜色]</div>
@@ -527,7 +518,7 @@
           <button  onclick="copyimg()" class="button2" style="margin-left: 8px;">创建SVG</button>
           <!--<button onclick="location.reload()" class="button2">重置</button>-->
           <!--button onclick="reload()" class="button2">默认</button-->         
-          <div class="text-1" style="margin-top: 8px; color: #a4a4a4; transform: skewX(-8deg); font-size: 8px;left:0px; position: absolute; text-align: left;">✦✦  2024.4.23 最近更新 <br> ·颜色校正公式 &nbsp; ·主文案彩色 &nbsp; ·色阶优化</div>
+          <div class="text-1" style="margin-top: 8px; color: #a4a4a4; transform: skewX(-8deg); font-size: 8px;left:0px; position: absolute; text-align: left;">✦✦  2024.5.7 最近更新 <br> ·颜色校正公式 &nbsp; ·主文案彩色 &nbsp; ·色阶优化</div>
         </div>
         
         <div id="log1" style="width: 400px; height: 20px; font-size: 12px; color: #972a37;"></div>
@@ -540,10 +531,7 @@
 
 <script>
 
-
-  themeChange()
-  addUrl()
-  addSvg()
+  
 
   const log = document.getElementById('log');
 
@@ -573,13 +561,13 @@
     if (checkbox1.checked){
       if (l>150){
         var checkbox = document.getElementById("themeSwitch");
-        checkbox.checked = true;
+        //checkbox.checked = true;
         changeColor()
         updateColorValue()
         tipsTodark()
       }else {
         var checkbox = document.getElementById("themeSwitch");
-        checkbox.checked = false;
+        //checkbox.checked = false;
         changeColor()
         updateColorValue()
         tipsTolight()
@@ -667,7 +655,7 @@ function colordark(){
   var L1 = [(L/10 - Math.pow((L/100 + 1),3) ) * (L/60 + 1) + 4 ]*10;
 
   //测试 
-  log.innerHTML = "校正值："+ H + "," +  Math.round(S1) + "," + Math.round(L1) ;
+  log.innerHTML = "color0校正值：hsl("+ H + "," +  Math.round(S1) + "%," + Math.round(L1)+ "%)" ;
 
   root.style.setProperty('--color5', "hsl(" + H +","+ S1 + "%,"+ L1 +"%)");
   root.style.setProperty('--color1', "hsl(" + H +","+ (S1*1.1) + "%,"+ (L1 - 6) +"%)");
@@ -755,15 +743,15 @@ function updateColorValue() {
 
   function AIcolor(){
     imgColor() 
-    /*var link = document.createElement('a');
+    var link = document.createElement('a');
                 link.href = canvas.toDataURL();
-                link.download = 'screenshot.png';
-                link.click();*/
+                link.download = 'test.png';
+                link.click();
 }
 
 //提取主色
   function imgColor() {
-  html2canvas(document.getElementById("bg-img"),{scale: 1}).then(function(canvas) {
+  html2canvas(document.getElementById("bg-img"),{scale: 1.5}).then(function(canvas) {
     var imageData = canvas.toDataURL("image/png");
 
     var img_url = imageData ;
@@ -787,7 +775,7 @@ function updateColorValue() {
       var rgb = "rgb(" + (imgData[0]) + "," + (imgData[1]) + "," + (imgData[2]) + ")";
       
     
-
+      /*
       var max = Math.max(r,g,b)
       var min = Math.min(r,g,b)
     
@@ -796,27 +784,19 @@ function updateColorValue() {
     
       
       if ( l < 90){
-        var r = imgData[0] + 30;
-        var g = imgData[1] + 30;
-        var b = imgData[2] + 30;
         var checkbox = document.getElementById("themeSwitch");
         checkbox.checked = false;
         lighttips()
       }else if (l > 180) {
-        var r = imgData[0] - 30;
-        var g = imgData[1] - 30;
-        var b = imgData[2] - 30;
         var checkbox = document.getElementById("themeSwitch");
         checkbox.checked = true;
         darktips()
       }else {
-        var r = imgData[0];
-        var g = imgData[1];
-        var b = imgData[2];
         var checkbox = document.getElementById("themeSwitch");
         checkbox.checked = false;
         lighttips()
       }
+      */
         
       
       var aicolor = document.getElementById("colorValue")
@@ -831,163 +811,13 @@ function updateColorValue() {
       }
     }
     
+    
     });
 }
 
 
 
-//提取主色(svg/链接)
-function extractColor(){   
-  addUrl()
-  addSvg()
-}
-
-function addUrl() {
-  var url = document.getElementById("imgurl");
-  var urlvalue =url.value;
-  var img_url = urlvalue;
-
-  var img = new Image()
-  img.src = img_url;
-  img.crossOrigin = "anonymous"
-
-    
-  img.onload = function() {
-    var canvas = document.getElementById('canvas')
-    var ctx = canvas.getContext('2d')
-    ctx.drawImage(img, 0, 0)
-    img.style.display = 'none'
-
-    var imgData = (ctx.getImageData(0, 0, img.width, img.height)).data;
-    
-    var r = imgData[0] ;
-    var g = imgData[1] ;
-    var b = imgData[2] ;
-    var rgb = "rgb(" + (imgData[0]) + "," + (imgData[1]) + "," + (imgData[2]) + ")";
-    
-  
-
-    var max = Math.max(r,g,b)
-    var min = Math.min(r,g,b)
-  
-    var l = (r * 299 + g * 587 + b * 114)/1000;
-    var s = (max - min)/max * 100;
-  
-    
-    if ( l < 90){
-      var r = imgData[0] + 30;
-      var g = imgData[1] + 30;
-      var b = imgData[2] + 30;
-      var checkbox = document.getElementById("themeSwitch");
-      checkbox.checked = false;
-      lighttips()
-    }else if (l > 180) {
-      var r = imgData[0] - 30;
-      var g = imgData[1] - 30;
-      var b = imgData[2] - 30;
-      var checkbox = document.getElementById("themeSwitch");
-      checkbox.checked = true;
-      darktips()
-    }else {
-      var r = imgData[0];
-      var g = imgData[1];
-      var b = imgData[2];
-      var checkbox = document.getElementById("themeSwitch");
-      checkbox.checked = false;
-      lighttips()
-    }
-      
-    
-    var aicolor = document.getElementById("colorValue")
-    var aicolor2 = document.getElementById("colorPicker")
-    aicolor.value = rgbToHex(r,g,b)
-    aicolor2.value = rgbToHex(r,g,b)
-    var checkbox = document.getElementById("themeSwitch")
-      if (checkbox.checked) {
-      colordark();
-    } else {
-      colorlight();
-    }
-  }
-  
-
-}
-
-function addSvg() {
-  var url = document.getElementById("imgSVG");
-  var svg_url = url.value;
-
-  var img = new Image()
-  img.src = "data:image/svg+xml," + encodeURIComponent(svg_url);
-  img.crossOrigin = "anonymous"
-
-    
-  img.onload = function() {
-    var canvas = document.getElementById('canvas')
-    var ctx = canvas.getContext('2d')
-    ctx.drawImage(img, 0, 0)
-    img.style.display = 'none'
-
-    var imgData = (ctx.getImageData(0, 0, img.width, img.height)).data;
-    
-    var r = imgData[0] ;
-    var g = imgData[1] ;
-    var b = imgData[2] ;
-    var rgb = "rgb(" + (imgData[0]) + "," + (imgData[1]) + "," + (imgData[2]) + ")";
-    
-  
-
-    var max = Math.max(r,g,b)
-    var min = Math.min(r,g,b)
-  
-    var num = (r/255 + (1.5 * g)/255 + (0.6 * b)/255) / (1 + 1.5 + 0.6)
-    var l = num * 255 ;
-    var s = (max - min)/max * 100;
-  
-    
-    if ( l < 90){
-      var r = imgData[0] + 30;
-      var g = imgData[1] + 30;
-      var b = imgData[2] + 30;
-      var checkbox = document.getElementById("themeSwitch");
-      checkbox.checked = false;
-      lighttips()
-    }else if (l > 180) {
-      var r = imgData[0] - 30;
-      var g = imgData[1] - 30;
-      var b = imgData[2] - 30;
-      var checkbox = document.getElementById("themeSwitch");
-      checkbox.checked = true;
-      darktips()
-    }else {
-      var r = imgData[0];
-      var g = imgData[1];
-      var b = imgData[2];
-      var checkbox = document.getElementById("themeSwitch");
-      checkbox.checked = false;
-      lighttips()
-    }
-      
-    
-    var aicolor = document.getElementById("colorValue")
-    var aicolor2 = document.getElementById("colorPicker")
-    aicolor.value = rgbToHex(r,g,b)
-    aicolor2.value = rgbToHex(r,g,b)
-    var checkbox = document.getElementById("themeSwitch")
-      if (checkbox.checked) {
-      colordark();
-    } else {
-      colorlight();
-    }
-  }
-
-  
-}
-
-
-
-
-
+themeChange()
 function themeChange(){
   var themeSwitch = document.getElementById('themeSwitch');
   var safaSwitch = document.getElementById('safaSwitch');
@@ -1161,29 +991,12 @@ function copyimg() {
     imgSVG2.value = svgCode
     
   });
+
 }
 
 
 
-//输入链接替换背景图
-const  imgurlInput = document.getElementById("imgurl");
-const container = document.getElementById('bg-img');
-const addSVG = document.getElementById('addSVG');
 
-imgurlInput.oninput = function() {
-  var imageUrl = imgurlInput.value;
-  container.style.backgroundImage = 'url(' + imageUrl + ')';
-  extractColor()
-};
-
-const  imgurlInput2 = document.getElementById("imgSVG")
-
-imgurlInput2.oninput = function() {
-  var imageData2 = imgurlInput2.value
-  container.style.backgroundImage ="url('data:image/svg+xml,"  + encodeURIComponent(imageData2) + "') no-repeat"
-  addSVG.innerHTML = imageData2
-  extractColor()
-}
 
 
 </script>
